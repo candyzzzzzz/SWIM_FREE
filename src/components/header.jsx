@@ -1,0 +1,319 @@
+import React from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import { MdPool } from "react-icons/md";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Popover from "@mui/material/Popover";
+
+const pages = ["Home", "About", "Services", "Contact"];
+
+const Header = () => {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [openLogin, setOpenLogin] = React.useState(false);
+  const [anchorElServices, setAnchorElServices] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleLoginOpen = () => setOpenLogin(true);
+  const handleLoginClose = () => setOpenLogin(false);
+
+  const handleServicesOpen = (event) =>
+    setAnchorElServices(event.currentTarget);
+  const handleServicesClose = () => setAnchorElServices(null);
+  const openServices = Boolean(anchorElServices);
+
+  return (
+    <>
+      <AppBar position="static" color="primary">
+        <Toolbar>
+          {/* Logo/Title */}
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "flex" },
+              alignItems: "center",
+            }}
+          >
+            <MdPool
+              style={{ marginRight: 8, fontSize: 28, verticalAlign: "middle" }}
+            />
+            Swim Free
+          </Typography>
+          {/* Desktop Nav */}
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            {pages.map((page) =>
+              page === "Services" ? (
+                <Box key={page}>
+                  <Button
+                    sx={{ color: "#fff", marginLeft: 2 }}
+                    aria-owns={openServices ? "mega-menu-popover" : undefined}
+                    aria-haspopup="true"
+                    onClick={handleServicesOpen}
+                  >
+                    {page}
+                  </Button>
+                  <Popover
+                    id="mega-menu-popover"
+                    open={openServices}
+                    anchorEl={anchorElServices}
+                    onClose={handleServicesClose}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                    transformOrigin={{ vertical: "top", horizontal: "left" }}
+                    PaperProps={{
+                      sx: {
+                        p: 3,
+                        minWidth: 180,
+                        maxWidth: 180,
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 1,
+                        background: "#f5fafd",
+                        mt: 2, // Add margin-top to shift popover downwards
+                      },
+                    }}
+                    disableRestoreFocus
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      sx={{ fontWeight: 700, mb: 1 }}
+                      // No mouse events here
+                    >
+                      Services
+                    </Typography>
+                    <Button
+                      fullWidth
+                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
+                    >
+                      Beginner Classes
+                    </Button>
+                    <Button
+                      fullWidth
+                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
+                    >
+                      Advanced Coaching
+                    </Button>
+                    <Button
+                      fullWidth
+                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
+                    >
+                      Kids Programs
+                    </Button>
+                    <Button
+                      fullWidth
+                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
+                    >
+                      Pool Booking
+                    </Button>
+                    <Button
+                      fullWidth
+                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
+                    >
+                      Private Lessons
+                    </Button>
+                    <Button
+                      fullWidth
+                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
+                    >
+                      Events & Camps
+                    </Button>
+                  </Popover>
+                </Box>
+              ) : (
+                <Button key={page} sx={{ color: "#fff", marginLeft: 2 }}>
+                  {page}
+                </Button>
+              )
+            )}
+            {/* Auth Buttons */}
+            <Button
+              sx={{
+                color: "#fff",
+                marginLeft: 4,
+                border: "1px solid #fff",
+                fontWeight: 600,
+                textTransform: "uppercase",
+              }}
+              onClick={handleLoginOpen}
+            >
+              Login
+            </Button>
+            <Button
+              sx={{
+                color: "#1976d2",
+                background: "#fff",
+                marginLeft: 2,
+                fontWeight: 600,
+                textTransform: "uppercase",
+                "&:hover": { background: "#e3f2fd" },
+              }}
+            >
+              Sign Up
+            </Button>
+          </Box>
+          {/* Mobile Nav */}
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="menu"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{ vertical: "top", horizontal: "right" }}
+              keepMounted
+              transformOrigin={{ vertical: "top", horizontal: "right" }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        </Toolbar>
+        {/* Login Dialog */}
+        <Dialog
+          open={openLogin}
+          onClose={handleLoginClose}
+          maxWidth="xs"
+          fullWidth
+        >
+          <DialogTitle>Login</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="User Name"
+              type="text"
+              fullWidth
+              variant="outlined"
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              margin="dense"
+              label="Password"
+              type="password"
+              fullWidth
+              variant="outlined"
+            />
+          </DialogContent>
+          <DialogActions
+            sx={{
+              flexDirection: "column",
+              alignItems: "stretch",
+              px: 3,
+              pb: 2,
+            }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ mb: 1 }}
+            >
+              Login
+            </Button>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+              }}
+            >
+              <Typography variant="body2" sx={{ mr: 1 }}>
+                Don't you have an account..?
+              </Typography>
+              <Link href="#" underline="hover" sx={{ fontWeight: 600 }}>
+                Sign Up
+              </Link>
+            </Box>
+          </DialogActions>
+        </Dialog>
+      </AppBar>
+      <Box
+        sx={{
+          width: "100%",
+          minHeight: "60vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%)",
+          py: 8,
+        }}
+      >
+        <Typography
+          variant="h2"
+          sx={{
+            fontWeight: 700,
+            color: "#1976d2",
+            mb: 2,
+            textAlign: "center",
+          }}
+        >
+          Welcome to Swim Free
+        </Typography>
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#333",
+            mb: 4,
+            textAlign: "center",
+            maxWidth: 600,
+          }}
+        >
+          Dive into a world of swimming excellence. Join us to improve your
+          skills, connect with a community, and enjoy the water like never
+          before.
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          sx={{
+            px: 5,
+            py: 1.5,
+            fontWeight: 600,
+            fontSize: "1.2rem",
+            borderRadius: 3,
+          }}
+        >
+          Get Started
+        </Button>
+      </Box>
+    </>
+  );
+};
+
+export default Header;
