@@ -53,6 +53,10 @@ const Header = () => {
               flexGrow: 1,
               display: { xs: "flex", md: "flex" },
               alignItems: "center",
+              fontFamily: '"Pacifico", "Comic Sans MS", cursive', // Unique font
+              letterSpacing: 2,
+              fontWeight: 700,
+              fontSize: { xs: 22, md: 28 },
             }}
           >
             <MdPool
@@ -66,7 +70,18 @@ const Header = () => {
               page === "Services" ? (
                 <Box key={page}>
                   <Button
-                    sx={{ color: "#fff", marginLeft: 2 }}
+                    sx={{
+                      color: "#fff",
+                      marginLeft: 2,
+                      transition: "background 0.2s, color 0.2s",
+                      fontFamily: '"Montserrat", "Comic Sans MS", cursive', // Unique font
+                      fontWeight: 600,
+                      letterSpacing: 1,
+                      "&:hover": {
+                        background: "#fff",
+                        color: "#1976d2",
+                      },
+                    }}
                     aria-owns={openServices ? "mega-menu-popover" : undefined}
                     aria-haspopup="true"
                     onClick={handleServicesOpen}
@@ -141,7 +156,21 @@ const Header = () => {
                   </Popover>
                 </Box>
               ) : (
-                <Button key={page} sx={{ color: "#fff", marginLeft: 2 }}>
+                <Button
+                  key={page}
+                  sx={{
+                    color: "#fff",
+                    marginLeft: 2,
+                    transition: "background 0.2s, color 0.2s",
+                    fontFamily: '"Montserrat", "Comic Sans MS", cursive', // Unique font
+                    fontWeight: 600,
+                    letterSpacing: 1,
+                    "&:hover": {
+                      background: "#fff",
+                      color: "#1976d2",
+                    },
+                  }}
+                >
                   {page}
                 </Button>
               )
@@ -261,57 +290,6 @@ const Header = () => {
           </DialogActions>
         </Dialog>
       </AppBar>
-      <Box
-        sx={{
-          width: "100%",
-          minHeight: "60vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%)",
-          py: 8,
-        }}
-      >
-        <Typography
-          variant="h2"
-          sx={{
-            fontWeight: 700,
-            color: "#1976d2",
-            mb: 2,
-            textAlign: "center",
-          }}
-        >
-          Welcome to Swim Free
-        </Typography>
-        <Typography
-          variant="h5"
-          sx={{
-            color: "#333",
-            mb: 4,
-            textAlign: "center",
-            maxWidth: 600,
-          }}
-        >
-          Dive into a world of swimming excellence. Join us to improve your
-          skills, connect with a community, and enjoy the water like never
-          before.
-        </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          sx={{
-            px: 5,
-            py: 1.5,
-            fontWeight: 600,
-            fontSize: "1.2rem",
-            borderRadius: 3,
-          }}
-        >
-          Get Started
-        </Button>
-      </Box>
     </>
   );
 };
