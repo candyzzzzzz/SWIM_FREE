@@ -14,14 +14,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Popover from "@mui/material/Popover";
+import HideScrollbar from "./HideScrollbar";
 
 const pages = ["Home", "About", "Services", "Contact"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [openLogin, setOpenLogin] = React.useState(false);
+  const [openSignUp, setOpenSignUp] = React.useState(false);
   const [anchorElServices, setAnchorElServices] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -35,6 +36,12 @@ const Header = () => {
   const handleLoginOpen = () => setOpenLogin(true);
   const handleLoginClose = () => setOpenLogin(false);
 
+  const handleSignUpOpen = () => {
+    setOpenLogin(false);
+    setOpenSignUp(true);
+  };
+  const handleSignUpClose = () => setOpenSignUp(false);
+
   const handleServicesOpen = (event) =>
     setAnchorElServices(event.currentTarget);
   const handleServicesClose = () => setAnchorElServices(null);
@@ -42,6 +49,7 @@ const Header = () => {
 
   return (
     <>
+      <HideScrollbar />
       <AppBar position="static" color="primary">
         <Toolbar>
           {/* Logo/Title */}
@@ -197,6 +205,7 @@ const Header = () => {
                 textTransform: "uppercase",
                 "&:hover": { background: "#e3f2fd" },
               }}
+              onClick={handleSignUpOpen}
             >
               Sign Up
             </Button>
@@ -283,13 +292,82 @@ const Header = () => {
               <Typography variant="body2" sx={{ mr: 1 }}>
                 Don't you have an account..?
               </Typography>
-              <Link href="#" underline="hover" sx={{ fontWeight: 600 }}>
+              <Button
+                onClick={handleSignUpOpen}
+                sx={{
+                  fontWeight: 600,
+                  color: "#1976d2",
+                  textTransform: "none",
+                  p: 0,
+                  minWidth: 0,
+                }}
+              >
                 Sign Up
-              </Link>
+              </Button>
             </Box>
           </DialogActions>
         </Dialog>
+        {/* Sign Up Dialog */}
+        <Dialog
+          open={openSignUp}
+          onClose={handleSignUpClose}
+          maxWidth="xs"
+          fullWidth
+        >
+          <DialogTitle>Sign Up</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="User Name"
+              type="text"
+              fullWidth
+              variant="outlined"
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              margin="dense"
+              label="Email"
+              type="email"
+              fullWidth
+              variant="outlined"
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              margin="dense"
+              label="Password"
+              type="password"
+              fullWidth
+              variant="outlined"
+            />
+          </DialogContent>
+          <DialogActions
+            sx={{
+              flexDirection: "column",
+              alignItems: "stretch",
+              px: 3,
+              pb: 2,
+            }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ mb: 1 }}
+            >
+              Sign Up
+            </Button>
+            <Button
+              onClick={handleSignUpClose}
+              fullWidth
+              sx={{ color: "#1976d2" }}
+            >
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
       </AppBar>
+      {/* End AppBar */}
     </>
   );
 };
