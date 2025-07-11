@@ -187,6 +187,7 @@ const CardsSection = () => (
       </Typography>
     </Box>
     {/* End Divider */}
+    <Box sx={{ height: { xs: 24, md: 40 } }} />
     <PromoSection /> {/* Render the PromoSection component here */}
   </Box>
 );

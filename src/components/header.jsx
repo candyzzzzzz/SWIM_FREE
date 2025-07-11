@@ -335,6 +335,14 @@ const Header = () => {
             />
             <TextField
               margin="dense"
+              label="Phone Number"
+              type="tel"
+              fullWidth
+              variant="outlined"
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              margin="dense"
               label="Password"
               type="password"
               fullWidth

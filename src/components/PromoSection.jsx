@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import TextField from "@mui/material/TextField";
 import bgImg from "../images/hero.jpg"; // Use your own image path if needed
-import promoImg from "../images/card1.jpg"; // Placeholder for the promo image
+import promoImg from "../images/card2.JPG"; // Placeholder for the promo image
 
 const PromoSection = () => {
   const [openSignUp, setOpenSignUp] = React.useState(false);
@@ -171,6 +171,14 @@ const PromoSection = () => {
                   margin="dense"
                   label="Email"
                   type="email"
+                  fullWidth
+                  variant="outlined"
+                  sx={{ mb: 2 }}
+                />
+                <TextField
+                  margin="dense"
+                  label="Phone Number"
+                  type="tel"
                   fullWidth
                   variant="outlined"
                   sx={{ mb: 2 }}
