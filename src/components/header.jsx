@@ -107,8 +107,8 @@ const Header = () => {
                       sx: {
                         p: 3,
                         minWidth: 180,
-                        maxWidth: 180,
-                        width: "100%",
+                        width: "auto", // Let width grow with content
+                        maxWidth: 300, // Prevent it from being too wide
                         display: "flex",
                         flexDirection: "column",
                         gap: 1,
