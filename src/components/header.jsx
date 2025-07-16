@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { MdPool } from "react-icons/md";
+import { MdPool, MdCheckCircle, MdClose } from "react-icons/md";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -243,69 +243,240 @@ const Header = () => {
         <Dialog
           open={openLogin}
           onClose={handleLoginClose}
-          maxWidth="xs"
+          maxWidth="md"
           fullWidth
+          PaperProps={{
+            sx: {
+              borderRadius: 3,
+              minWidth: { xs: 340, sm: 600, md: 800 },
+              background: "#181c22",
+              color: "#fff",
+            },
+          }}
         >
-          <DialogTitle>Login</DialogTitle>
-          <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              label="User Name"
-              type="text"
-              fullWidth
-              variant="outlined"
-              sx={{ mb: 2 }}
-            />
-            <TextField
-              margin="dense"
-              label="Password"
-              type="password"
-              fullWidth
-              variant="outlined"
-            />
-          </DialogContent>
-          <DialogActions
+          <DialogTitle
             sx={{
-              flexDirection: "column",
-              alignItems: "stretch",
-              px: 3,
-              pb: 2,
+              fontWeight: 700,
+              fontSize: 28,
+              color: "#1976d2",
+              fontFamily: 'Montserrat, "Comic Sans MS", cursive',
+              letterSpacing: 1,
+              background: "transparent",
+              pb: 0,
+              pr: 5,
+              position: "relative",
             }}
           >
+            Login
             <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              sx={{ mb: 1 }}
+              onClick={handleLoginClose}
+              sx={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                minWidth: 0,
+                p: 0.5,
+                color: "#1976d2",
+                background: "transparent",
+                borderRadius: "50%",
+                boxShadow: 1,
+                zIndex: 2,
+                "&:hover": { background: "#e3f2fd" },
+              }}
+              aria-label="close"
             >
-              Login
+              <MdClose style={{ fontSize: 24 }} />
             </Button>
+          </DialogTitle>
+          <DialogContent
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              gap: 4,
+              py: 4,
+              background: "transparent",
+            }}
+          >
+            {/* Info Section */}
             <Box
               sx={{
+                flex: 1.2,
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
+                alignItems: { xs: "center", md: "flex-start" },
+                background:
+                  "linear-gradient(135deg, #e3f2fd 60%, #b2ebf2 100%)",
+                borderRadius: 3,
+                p: { xs: 2.5, md: 4 },
+                mb: { xs: 3, md: 0 },
+                minWidth: 260,
+                maxWidth: 340,
+                boxShadow: "0 4px 18px 0 rgba(25, 118, 210, 0.13)",
+                border: "2px solid #1976d2",
               }}
             >
-              <Typography variant="body2" sx={{ mr: 1 }}>
-                Don't you have an account..?
-              </Typography>
-              <Button
-                onClick={handleSignUpOpen}
+              <Typography
+                variant="h5"
                 sx={{
-                  fontWeight: 600,
+                  fontWeight: 900,
                   color: "#1976d2",
-                  textTransform: "none",
-                  p: 0,
-                  minWidth: 0,
+                  mb: 1,
+                  fontFamily: 'Montserrat, "Comic Sans MS", cursive',
+                  letterSpacing: 1,
+                  textShadow: "0 2px 8px #b2ebf2",
+                  textAlign: { xs: "center", md: "left" },
                 }}
               >
-                Sign Up
-              </Button>
+                TRAIN LIKE A PRO
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  color: "#1976d2",
+                  fontWeight: 600,
+                  mb: 2,
+                  fontSize: 16,
+                  textAlign: { xs: "center", md: "left" },
+                }}
+              >
+                And get full access to:
+              </Typography>
+              <Box
+                component="ul"
+                sx={{
+                  pl: 2,
+                  color: "#1976d2",
+                  fontSize: 15,
+                  fontWeight: 500,
+                  m: 0,
+                  listStyle: "none",
+                  textAlign: { xs: "center", md: "left" },
+                }}
+              >
+                <Box
+                  component="li"
+                  sx={{ display: "flex", alignItems: "center", mb: 1 }}
+                >
+                  <MdCheckCircle
+                    style={{ color: "#1976d2", fontSize: 22, marginRight: 8 }}
+                  />
+                  Training plans
+                </Box>
+                <Box
+                  component="li"
+                  sx={{ display: "flex", alignItems: "center", mb: 1 }}
+                >
+                  <MdCheckCircle
+                    style={{ color: "#1976d2", fontSize: 22, marginRight: 8 }}
+                  />
+                  Technique improvement courses
+                </Box>
+                <Box
+                  component="li"
+                  sx={{ display: "flex", alignItems: "center", mb: 1 }}
+                >
+                  <MdCheckCircle
+                    style={{ color: "#1976d2", fontSize: 22, marginRight: 8 }}
+                  />
+                  100+ instruction videos
+                </Box>
+                <Box
+                  component="li"
+                  sx={{ display: "flex", alignItems: "center" }}
+                >
+                  <MdCheckCircle
+                    style={{ color: "#1976d2", fontSize: 22, marginRight: 8 }}
+                  />
+                  Workout finder and collections
+                </Box>
+              </Box>
             </Box>
-          </DialogActions>
+            {/* Login Form Section */}
+            <Box
+              sx={{
+                flex: 1.5,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                minWidth: 260,
+              }}
+            >
+              <TextField
+                autoFocus
+                margin="dense"
+                label="User Name"
+                type="text"
+                fullWidth
+                variant="outlined"
+                sx={{ mb: 2, background: "#fff", borderRadius: 1 }}
+                InputLabelProps={{
+                  style: { color: "#1976d2", fontWeight: 600 },
+                }}
+              />
+              <TextField
+                margin="dense"
+                label="Password"
+                type="password"
+                fullWidth
+                variant="outlined"
+                sx={{ background: "#fff", borderRadius: 1 }}
+                InputLabelProps={{
+                  style: { color: "#1976d2", fontWeight: 600 },
+                }}
+              />
+              <DialogActions
+                sx={{
+                  flexDirection: "column",
+                  alignItems: "stretch",
+                  px: 0,
+                  pb: 0,
+                  width: "100%",
+                  mt: 2,
+                }}
+              >
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  sx={{
+                    mb: 1,
+                    fontWeight: 700,
+                    fontSize: 18,
+                    py: 1.2,
+                    borderRadius: 2,
+                  }}
+                >
+                  Login
+                </Button>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                >
+                  <Typography variant="body2" sx={{ mr: 1, color: "#fff" }}>
+                    Don't you have an account..?
+                  </Typography>
+                  <Button
+                    onClick={handleSignUpOpen}
+                    sx={{
+                      fontWeight: 600,
+                      color: "#1976d2",
+                      textTransform: "none",
+                      p: 0,
+                      minWidth: 0,
+                    }}
+                  >
+                    Sign Up
+                  </Button>
+                </Box>
+              </DialogActions>
+            </Box>
+          </DialogContent>
         </Dialog>
         {/* Sign Up Dialog */}
         <Dialog
