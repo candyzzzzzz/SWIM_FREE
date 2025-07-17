@@ -265,6 +265,7 @@ const Header = () => {
               pb: 0,
               pr: 5,
               position: "relative",
+              textAlign: "center",
             }}
           >
             Login
@@ -294,13 +295,14 @@ const Header = () => {
               flexDirection: { xs: "column", md: "row" },
               gap: 4,
               py: 4,
+              mt: 3,
               background: "transparent",
             }}
           >
             {/* Info Section */}
             <Box
               sx={{
-                flex: 1.2,
+                flex: 1,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -395,7 +397,7 @@ const Header = () => {
             {/* Login Form Section */}
             <Box
               sx={{
-                flex: 1.5,
+                flex: 1,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
