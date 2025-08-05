@@ -50,7 +50,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Login data submitted:", loginData);
+      console.log("Login data submitted:", { loginData });
       setLoginData(INITIAL_LOGIN_DATA);
     }
   };
