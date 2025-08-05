@@ -1,6 +1,6 @@
 export const checkValidEmail = (email) => {
   const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regex
-  return pattern.test(email);
+  return pattern.test(email); // true or false
 };
 
 export const checkValidPassword = (password) => {

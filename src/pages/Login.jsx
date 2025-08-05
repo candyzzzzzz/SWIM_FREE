@@ -27,7 +27,7 @@ const Login = () => {
 
   const validateForm = () => {
     let err = {};
-    for (let key in loginData) {
+    for (const key in loginData) {
       if (!loginData[key]) {
         err[key + "_err"] = "Please enter " + key.replace(/_/g, " ");
       } else if (key === "email") {
@@ -51,7 +51,7 @@ const Login = () => {
     if (validateForm()) {
       // Handle login logic here
       console.log("Login data submitted:", loginData);
-      // setLoginData(INITIAL_LOGIN_DATA); // Reset form after submission
+      setLoginData(INITIAL_LOGIN_DATA); // Reset form after submission
     }
   };
 
