@@ -18,7 +18,7 @@ import cardImg2 from "../images/card2.JPG";
 import cardImg3 from "../images/card3.jpg";
 import cardImg4 from "../images/card4.jpg";
 import PromoSection from "./PromoSection";
-import Newsletter from "./Newsletter.jsx";
+
 const cardData = [
   {
     icon: <PoolIcon sx={{ fontSize: 40, color: "#1976d2" }} />,
@@ -74,14 +74,14 @@ const CardsSection = () => (
         <Button
           variant="contained"
           color="primary"
-          sx={{ mr: 2, px: 4, fontWeight: 600 }}
+          sx={{ mpx: 4, fontWeight: 600 }}
         >
           Learn More
         </Button>
         <Button
           variant="outlined"
           color="primary"
-          sx={{ px: 4, fontWeight: 600 }}
+          sx={{ px: 4, fontWeight: 600, ml: 2 }}
         >
           Explore
         </Button>
@@ -189,7 +189,6 @@ const CardsSection = () => (
     {/* End Divider */}
     <Box sx={{ height: { xs: 24, md: 40 } }} />
     <PromoSection /> {/* Render the PromoSection component here */}
-    <Newsletter />
   </Box>
 );
 

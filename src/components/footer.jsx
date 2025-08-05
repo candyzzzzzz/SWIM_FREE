@@ -7,6 +7,7 @@ import {
   IconButton,
   Stack,
 } from "@mui/material";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -16,7 +17,7 @@ const Footer = () => (
   <Box
     component="footer"
     sx={{
-      background: "linear-gradient(90deg, #0d1b2a 0%, #1976d2 100%)",
+      background: "#000",
       color: "#fff",
       pt: 6,
       pb: 2,
@@ -168,6 +169,16 @@ const Footer = () => (
               size="small"
             >
               <InstagramIcon />
+            </IconButton>
+            <IconButton
+              href="https://github.com/login"
+              color="inherit"
+              aria-label="GitHub"
+              size="small"
+              target="_blank"
+              rel="noopener"
+            >
+              <GitHubIcon />
             </IconButton>
             <IconButton
               href="mailto:info@swimfree.com"

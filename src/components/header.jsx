@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -24,6 +24,18 @@ const Header = () => {
   const [openLogin, setOpenLogin] = React.useState(false);
   const [openSignUp, setOpenSignUp] = React.useState(false);
   const [anchorElServices, setAnchorElServices] = React.useState(null);
+
+  const [Text, setText] = useState("");
+  const [Password, setPassword] = useState("");
+  const [data, setData] = useState([]);
+
+  const change = () => {
+    if (Text && Password) {
+      setData((prev) => [...prev, { username: Text, password: Password }]);
+      setText("");
+      setPassword("");
+    }
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -249,8 +261,8 @@ const Header = () => {
             sx: {
               borderRadius: 3,
               minWidth: { xs: 340, sm: 600, md: 800 },
-              background: "#181c22",
-              color: "#fff",
+              background: "#fff",
+              color: "#222",
             },
           }}
         >
@@ -258,8 +270,8 @@ const Header = () => {
             sx={{
               fontWeight: 700,
               fontSize: 28,
-              color: "#1976d2",
-              fontFamily: 'Montserrat, "Comic Sans MS", cursive',
+              color: "#222",
+              fontFamily: "Arial, sans-serif",
               letterSpacing: 1,
               background: "transparent",
               pb: 0,
@@ -277,12 +289,12 @@ const Header = () => {
                 right: 8,
                 minWidth: 0,
                 p: 0.5,
-                color: "#1976d2",
+                color: "#222",
                 background: "transparent",
                 borderRadius: "50%",
                 boxShadow: 1,
                 zIndex: 2,
-                "&:hover": { background: "#e3f2fd" },
+                "&:hover": { background: "#eee" },
               }}
               aria-label="close"
             >
@@ -307,26 +319,25 @@ const Header = () => {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: { xs: "center", md: "flex-start" },
-                background:
-                  "linear-gradient(135deg, #e3f2fd 60%, #b2ebf2 100%)",
+                background: "#f5f5f5",
                 borderRadius: 3,
                 p: { xs: 2.5, md: 4 },
                 mb: { xs: 3, md: 0 },
                 minWidth: 260,
                 maxWidth: 340,
-                boxShadow: "0 4px 18px 0 rgba(25, 118, 210, 0.13)",
-                border: "2px solid #1976d2",
+                boxShadow: "0 4px 18px 0 #0001",
+                border: "1px solid #ccc",
               }}
             >
               <Typography
                 variant="h5"
                 sx={{
                   fontWeight: 900,
-                  color: "#1976d2",
+                  color: "#222",
                   mb: 1,
-                  fontFamily: 'Montserrat, "Comic Sans MS", cursive',
+                  fontFamily: "Arial, sans-serif",
                   letterSpacing: 1,
-                  textShadow: "0 2px 8px #b2ebf2",
+                  textShadow: "none",
                   textAlign: { xs: "center", md: "left" },
                 }}
               >
@@ -335,7 +346,7 @@ const Header = () => {
               <Typography
                 variant="subtitle1"
                 sx={{
-                  color: "#1976d2",
+                  color: "#222",
                   fontWeight: 600,
                   mb: 2,
                   fontSize: 16,
@@ -348,7 +359,7 @@ const Header = () => {
                 component="ul"
                 sx={{
                   pl: 2,
-                  color: "#1976d2",
+                  color: "#222",
                   fontSize: 15,
                   fontWeight: 500,
                   m: 0,
@@ -361,7 +372,7 @@ const Header = () => {
                   sx={{ display: "flex", alignItems: "center", mb: 1 }}
                 >
                   <MdCheckCircle
-                    style={{ color: "#1976d2", fontSize: 22, marginRight: 8 }}
+                    style={{ color: "#888", fontSize: 22, marginRight: 8 }}
                   />
                   Training plans
                 </Box>
@@ -370,7 +381,7 @@ const Header = () => {
                   sx={{ display: "flex", alignItems: "center", mb: 1 }}
                 >
                   <MdCheckCircle
-                    style={{ color: "#1976d2", fontSize: 22, marginRight: 8 }}
+                    style={{ color: "#888", fontSize: 22, marginRight: 8 }}
                   />
                   Technique improvement courses
                 </Box>
@@ -379,7 +390,7 @@ const Header = () => {
                   sx={{ display: "flex", alignItems: "center", mb: 1 }}
                 >
                   <MdCheckCircle
-                    style={{ color: "#1976d2", fontSize: 22, marginRight: 8 }}
+                    style={{ color: "#888", fontSize: 22, marginRight: 8 }}
                   />
                   100+ instruction videos
                 </Box>
@@ -388,7 +399,7 @@ const Header = () => {
                   sx={{ display: "flex", alignItems: "center" }}
                 >
                   <MdCheckCircle
-                    style={{ color: "#1976d2", fontSize: 22, marginRight: 8 }}
+                    style={{ color: "#888", fontSize: 22, marginRight: 8 }}
                   />
                   Workout finder and collections
                 </Box>
@@ -405,27 +416,41 @@ const Header = () => {
                 minWidth: 260,
               }}
             >
-              <TextField
+              <input
                 autoFocus
-                margin="dense"
-                label="User Name"
                 type="text"
-                fullWidth
-                variant="outlined"
-                sx={{ mb: 2, background: "#fff", borderRadius: 1 }}
-                InputLabelProps={{
-                  style: { color: "#1976d2", fontWeight: 600 },
+                value={Text} // Controlled by state
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Username"
+                style={{
+                  width: "100%",
+                  marginBottom: 16,
+                  padding: "12px 14px",
+                  borderRadius: 8,
+                  border: "1px solid #ccc",
+                  fontSize: 16,
+                  background: "#fff",
+                  color: "#222",
+                  outline: "none",
+                  boxSizing: "border-box",
                 }}
               />
-              <TextField
-                margin="dense"
-                label="Password"
-                type="password"
-                fullWidth
-                variant="outlined"
-                sx={{ background: "#fff", borderRadius: 1 }}
-                InputLabelProps={{
-                  style: { color: "#1976d2", fontWeight: 600 },
+              <input
+                type="Password"
+                value={Password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                style={{
+                  width: "100%",
+                  marginBottom: 16,
+                  padding: "12px 14px",
+                  borderRadius: 8,
+                  border: "1px solid #ccc",
+                  fontSize: 16,
+                  background: "#fff",
+                  color: "#222",
+                  outline: "none",
+                  boxSizing: "border-box",
                 }}
               />
               <DialogActions
@@ -440,18 +465,171 @@ const Header = () => {
               >
                 <Button
                   variant="contained"
-                  color="primary"
+                  onClick={change}
                   fullWidth
                   sx={{
-                    mb: 1,
+                    mb: 2,
                     fontWeight: 700,
                     fontSize: 18,
                     py: 1.2,
-                    borderRadius: 2,
                   }}
                 >
                   Login
                 </Button>
+                {/* Table for login data */}
+                {data.length > 0 && (
+                  <Box sx={{ width: "100%", mb: 2 }}>
+                    <table
+                      style={{
+                        width: "100%",
+                        borderCollapse: "collapse",
+                        marginBottom: 8,
+                      }}
+                    >
+                      <thead>
+                        <tr style={{ background: "#f5f5f5" }}>
+                          <th
+                            style={{
+                              border: "1px solid #ccc",
+                              padding: 8,
+                              fontWeight: 700,
+                            }}
+                          >
+                            Username
+                          </th>
+                          <th
+                            style={{
+                              border: "1px solid #ccc",
+                              padding: 8,
+                              fontWeight: 700,
+                            }}
+                          >
+                            Password
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.map((row, idx) => (
+                          <tr key={idx}>
+                            <td
+                              style={{ border: "1px solid #ccc", padding: 8 }}
+                            >
+                              {row.username}
+                            </td>
+                            <td
+                              style={{ border: "1px solid #ccc", padding: 8 }}
+                            >
+                              {row.password}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </Box>
+                )}
+                {/* Divider with 'Or' */}
+                <Box sx={{ display: "flex", alignItems: "center", my: 2 }}>
+                  <Box
+                    sx={{
+                      flex: 1,
+                      height: "2px",
+                      background: "#ccc",
+                      borderRadius: 1,
+                    }}
+                  />
+                  <Typography sx={{ mx: 2, color: "#888", fontWeight: 600 }}>
+                    Or
+                  </Typography>
+                  <Box
+                    sx={{
+                      flex: 1,
+                      height: "2px",
+                      background: "#ccc",
+                      borderRadius: 1,
+                    }}
+                  />
+                </Box>
+
+                {/* Social Login Options */}
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 2,
+                    mb: 2,
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      p: 1.5,
+                      borderRadius: "999px",
+                      boxShadow: "0 2px 8px 0 #0002",
+                      background: "#fff",
+                      cursor: "pointer",
+                      transition: "box-shadow 0.2s",
+                      "&:hover": { boxShadow: "0 4px 16px 0 #0003" },
+                    }}
+                  >
+                    <img
+                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                      alt="Google"
+                      style={{ width: 28, height: 28, marginRight: 12 }}
+                    />
+                    <Typography sx={{ fontWeight: 600, color: "#444" }}>
+                      Login with Google
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      p: 1.5,
+                      borderRadius: "999px",
+                      boxShadow: "0 2px 8px 0 #0002",
+                      background: "#fff",
+                      cursor: "pointer",
+                      transition: "box-shadow 0.2s",
+                      "&:hover": { boxShadow: "0 4px 16px 0 #0003" },
+                    }}
+                  >
+                    <img
+                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg"
+                      alt="Facebook"
+                      style={{ width: 28, height: 28, marginRight: 12 }}
+                    />
+                    <Typography sx={{ fontWeight: 600, color: "#444" }}>
+                      Login with Facebook
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      p: 1.5,
+                      borderRadius: "999px",
+                      boxShadow: "0 2px 8px 0 #0002",
+                      background: "#fff",
+                      cursor: "pointer",
+                      transition: "box-shadow 0.2s",
+                      "&:hover": { boxShadow: "0 4px 16px 0 #0003" },
+                    }}
+                  >
+                    <img
+                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                      alt="GitHub"
+                      style={{ width: 28, height: 28, marginRight: 12 }}
+                    />
+                    <Typography sx={{ fontWeight: 600, color: "#444" }}>
+                      Login with GitHub
+                    </Typography>
+                  </Box>
+                </Box>
+
                 <Box
                   sx={{
                     display: "flex",
@@ -460,14 +638,14 @@ const Header = () => {
                     width: "100%",
                   }}
                 >
-                  <Typography variant="body2" sx={{ mr: 1, color: "#fff" }}>
+                  <Typography variant="body2" sx={{ mr: 1, color: "#222" }}>
                     Don't you have an account..?
                   </Typography>
                   <Button
                     onClick={handleSignUpOpen}
                     sx={{
                       fontWeight: 600,
-                      color: "#1976d2",
+                      color: "#222",
                       textTransform: "none",
                       p: 0,
                       minWidth: 0,
