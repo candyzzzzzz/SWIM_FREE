@@ -15,7 +15,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import TextField from "@mui/material/TextField";
 import Popover from "@mui/material/Popover";
-import HideScrollbar from "./HideScrollbar";
+import HideScrollbar from "../HideScrollbar";
 import { useNavigate } from "react-router-dom";
 
 const pages = ["Home", "About", "Services", "Contact"];
