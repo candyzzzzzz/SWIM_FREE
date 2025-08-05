@@ -16,6 +16,7 @@ import DialogActions from "@mui/material/DialogActions";
 import TextField from "@mui/material/TextField";
 import Popover from "@mui/material/Popover";
 import HideScrollbar from "./HideScrollbar";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Home", "About", "Services", "Contact"];
 
@@ -28,6 +29,8 @@ const Header = () => {
   const [Text, setText] = useState("");
   const [Password, setPassword] = useState("");
   const [data, setData] = useState([]);
+
+  const navigate = useNavigate();
 
   const change = () => {
     if (Text && Password) {
@@ -45,7 +48,8 @@ const Header = () => {
     setAnchorElNav(null);
   };
 
-  const handleLoginOpen = () => setOpenLogin(true);
+  // const handleLoginOpen = () => setOpenLogin(true);
+  const handleLoginOpen = () => navigate("/login");
   const handleLoginClose = () => setOpenLogin(false);
 
   const handleSignUpOpen = () => {
@@ -418,10 +422,10 @@ const Header = () => {
             >
               <input
                 autoFocus
-                type="text"
+                type="email"
                 value={Text} // Controlled by state
                 onChange={(e) => setText(e.target.value)}
-                placeholder="Username"
+                placeholder="Email"
                 style={{
                   width: "100%",
                   marginBottom: 16,
