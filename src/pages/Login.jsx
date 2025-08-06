@@ -65,6 +65,7 @@ const Login = () => {
         minHeight: "100vh",
         p: 4,
         background: "linear-gradient(135deg, #e3f2fd, #e8f5e9)",
+        gap: { xs: 4, md: 8 }, // Add gap between panels
       }}
     >
       {/* Info Section */}
@@ -205,7 +206,14 @@ const Login = () => {
           </Button>
         ))}
 
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            mt: 3,
+          }}
+        >
           <Typography variant="body2">Don't have an account?</Typography>
           <Button
             href="/signup"

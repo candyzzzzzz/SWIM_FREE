@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import Signup from "./pages/Signup";
 
 const AppRoutes = () => {
   return (
@@ -10,6 +11,7 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/services" element={<Services />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
