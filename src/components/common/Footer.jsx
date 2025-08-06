@@ -1,17 +1,16 @@
-import React from "react";
+import EmailIcon from "@mui/icons-material/Email";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
 import {
   Box,
-  Typography,
-  Link,
   Container,
   IconButton,
+  Link,
   Stack,
+  Typography,
 } from "@mui/material";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import EmailIcon from "@mui/icons-material/Email";
 
 const Footer = () => (
   <Box
@@ -75,7 +74,7 @@ const Footer = () => (
               <Link href="#" color="inherit" underline="hover">
                 Workouts
               </Link>
-              <Link href="#" color="inherit" underline="hover">
+              <Link href="/signup" color="inherit" underline="hover">
                 Sign Up
               </Link>
               <Link href="#" color="inherit" underline="hover">

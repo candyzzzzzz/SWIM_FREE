@@ -1,18 +1,12 @@
-import React from "react";
-import { Box, Typography, Button, Container } from "@mui/material";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
-import TextField from "@mui/material/TextField";
-import bgImg from "../images/hero.jpg"; // Use your own image path if needed
+import { Box, Button, Container, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import promoImg from "../images/card2.JPG"; // Placeholder for the promo image
+import bgImg from "../images/hero.jpg"; // Use your own image path if needed
 
 const PromoSection = () => {
-  const [openSignUp, setOpenSignUp] = React.useState(false);
+  const navigate = useNavigate();
 
-  const handleSignUpOpen = () => setOpenSignUp(true);
-  const handleSignUpClose = () => setOpenSignUp(false);
+  const handleSignUpOpen = () => navigate("/signup");
 
   return (
     <>
@@ -149,73 +143,6 @@ const PromoSection = () => {
             >
               Sign Up
             </Button>
-            {/* Sign Up Dialog */}
-            <Dialog
-              open={openSignUp}
-              onClose={handleSignUpClose}
-              maxWidth="xs"
-              fullWidth
-            >
-              <DialogTitle>Sign Up</DialogTitle>
-              <DialogContent>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  label="User Name"
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                  sx={{ mb: 2 }}
-                />
-                <TextField
-                  margin="dense"
-                  label="Email"
-                  type="email"
-                  fullWidth
-                  variant="outlined"
-                  sx={{ mb: 2 }}
-                />
-                <TextField
-                  margin="dense"
-                  label="Phone Number"
-                  type="tel"
-                  fullWidth
-                  variant="outlined"
-                  sx={{ mb: 2 }}
-                />
-                <TextField
-                  margin="dense"
-                  label="Password"
-                  type="password"
-                  fullWidth
-                  variant="outlined"
-                />
-              </DialogContent>
-              <DialogActions
-                sx={{
-                  flexDirection: "column",
-                  alignItems: "stretch",
-                  px: 3,
-                  pb: 2,
-                }}
-              >
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  sx={{ mb: 1 }}
-                >
-                  Sign Up
-                </Button>
-                <Button
-                  onClick={handleSignUpClose}
-                  fullWidth
-                  sx={{ color: "#1976d2" }}
-                >
-                  Cancel
-                </Button>
-              </DialogActions>
-            </Dialog>
           </Box>
         </Container>
       </Box>

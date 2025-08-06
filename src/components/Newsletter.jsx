@@ -1,6 +1,5 @@
-import React from "react";
-import { Box, Typography, TextField, Button } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import bgImage from "../images/newsletter.jpg";
 
 const Newsletter = () => (

@@ -1,44 +1,25 @@
-import React, { useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import MenuIcon from "@mui/icons-material/Menu";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import { MdPool, MdClose } from "react-icons/md";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
-import TextField from "@mui/material/TextField";
 import Popover from "@mui/material/Popover";
-import HideScrollbar from "../HideScrollbar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { useState } from "react";
+import { MdPool } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import HideScrollbar from "../HideScrollbar";
 
 const pages = ["Home", "About", "Services", "Contact"];
 
 const Header = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [openLogin, setOpenLogin] = React.useState(false);
-  const [openSignUp, setOpenSignUp] = React.useState(false);
-  const [anchorElServices, setAnchorElServices] = React.useState(null);
-
-  const [Text, setText] = useState("");
-  const [Password, setPassword] = useState("");
-  const [data, setData] = useState([]);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElServices, setAnchorElServices] = useState(null);
 
   const navigate = useNavigate();
-
-  const change = () => {
-    if (Text && Password) {
-      setData((prev) => [...prev, { username: Text, password: Password }]);
-      setText("");
-      setPassword("");
-    }
-  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -48,21 +29,12 @@ const Header = () => {
     setAnchorElNav(null);
   };
 
-  // const handleLoginOpen = () => setOpenLogin(true);
   const handleLoginOpen = () => navigate("/login");
-  const handleLoginClose = () => setOpenLogin(false);
 
-  const handleSignUpOpen = () => {
-    setOpenLogin(false);
-    setOpenSignUp(true);
-  };
-  const handleSignUpClose = () => setOpenSignUp(false);
-
+  const handleSignUpOpen = () => navigate("/signup");
   const handleServicesOpen = (event) =>
     setAnchorElServices(event.currentTarget);
   const handleServicesClose = () => setAnchorElServices(null);
-  const openServices = Boolean(anchorElServices);
-
   return (
     <>
       <HideScrollbar />
@@ -106,7 +78,9 @@ const Header = () => {
                         color: "#1976d2",
                       },
                     }}
-                    aria-owns={openServices ? "mega-menu-popover" : undefined}
+                    aria-owns={
+                      anchorElServices ? "mega-menu-popover" : undefined
+                    }
                     aria-haspopup="true"
                     onClick={handleServicesOpen}
                   >
@@ -114,7 +88,7 @@ const Header = () => {
                   </Button>
                   <Popover
                     id="mega-menu-popover"
-                    open={openServices}
+                    open={anchorElServices}
                     anchorEl={anchorElServices}
                     onClose={handleServicesClose}
                     anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
@@ -255,124 +229,6 @@ const Header = () => {
             </Menu>
           </Box>
         </Toolbar>
-        {/* Login Dialog */}
-        <Dialog
-          open={openLogin}
-          onClose={handleLoginClose}
-          maxWidth="md"
-          fullWidth
-          PaperProps={{
-            sx: {
-              borderRadius: 3,
-              minWidth: { xs: 340, sm: 600, md: 800 },
-              background: "#fff",
-              color: "#222",
-            },
-          }}
-        >
-          <DialogTitle
-            sx={{
-              fontWeight: 700,
-              fontSize: 28,
-              color: "#222",
-              fontFamily: "Arial, sans-serif",
-              letterSpacing: 1,
-              background: "transparent",
-              pb: 0,
-              pr: 5,
-              position: "relative",
-              textAlign: "center",
-            }}
-          >
-            Login
-            <Button
-              onClick={handleLoginClose}
-              sx={{
-                position: "absolute",
-                top: 8,
-                right: 8,
-                minWidth: 0,
-                p: 0.5,
-                color: "#222",
-                background: "transparent",
-                borderRadius: "50%",
-                boxShadow: 1,
-                zIndex: 2,
-                "&:hover": { background: "#eee" },
-              }}
-              aria-label="close"
-            >
-              <MdClose style={{ fontSize: 24 }} />
-            </Button>
-          </DialogTitle>
-        </Dialog>
-        {/* Sign Up Dialog */}
-        <Dialog
-          open={openSignUp}
-          onClose={handleSignUpClose}
-          maxWidth="xs"
-          fullWidth
-        >
-          <DialogTitle>Sign Up</DialogTitle>
-          <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              label="User Name"
-              type="text"
-              fullWidth
-              variant="outlined"
-              sx={{ mb: 2 }}
-            />
-            <TextField
-              margin="dense"
-              label="Email"
-              type="email"
-              fullWidth
-              variant="outlined"
-              sx={{ mb: 2 }}
-            />
-            <TextField
-              margin="dense"
-              label="Phone Number"
-              type="tel"
-              fullWidth
-              variant="outlined"
-              sx={{ mb: 2 }}
-            />
-            <TextField
-              margin="dense"
-              label="Password"
-              type="password"
-              fullWidth
-              variant="outlined"
-            />
-          </DialogContent>
-          <DialogActions
-            sx={{
-              flexDirection: "column",
-              alignItems: "stretch",
-              px: 3,
-              pb: 2,
-            }}
-          >
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              sx={{ mb: 1 }}
-            >
-              Sign Up
-            </Button>
-            <Button
-              onClick={handleSignUpClose}
-              fullWidth
-              sx={{ color: "#1976d2" }}
-            >
-              Cancel
-            </Button>
-          </DialogActions>
-        </Dialog>
       </AppBar>
       {/* End AppBar */}
     </>
