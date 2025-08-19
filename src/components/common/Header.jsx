@@ -13,7 +13,7 @@ import { MdPool } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import HideScrollbar from "../HideScrollbar";
 
-const pages = ["Home", "About", "Services", "Contact"];
+const pages = ["Home", "About", "Services", "Contactus"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -62,15 +62,125 @@ const Header = () => {
           </Typography>
           {/* Desktop Nav */}
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) =>
-              page === "Services" ? (
-                <Box key={page}>
+            {pages.map((page) => {
+              if (page === "Services") {
+                return (
+                  <Box key={page}>
+                    <Button
+                      sx={{
+                        color: "#fff",
+                        marginLeft: 2,
+                        transition: "background 0.2s, color 0.2s",
+                        fontFamily: '"Montserrat", "Comic Sans MS", cursive',
+                        fontWeight: 600,
+                        letterSpacing: 1,
+                        "&:hover": {
+                          background: "#fff",
+                          color: "#1976d2",
+                        },
+                      }}
+                      aria-owns={
+                        anchorElServices ? "mega-menu-popover" : undefined
+                      }
+                      aria-haspopup="true"
+                      onClick={handleServicesOpen}
+                    >
+                      {page}
+                    </Button>
+                    <Popover
+                      id="mega-menu-popover"
+                      open={anchorElServices}
+                      anchorEl={anchorElServices}
+                      onClose={handleServicesClose}
+                      anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                      transformOrigin={{ vertical: "top", horizontal: "left" }}
+                      PaperProps={{
+                        sx: {
+                          p: 3,
+                          minWidth: 180,
+                          width: "auto",
+                          maxWidth: 300,
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 1,
+                          background: "#f5fafd",
+                          mt: 2,
+                        },
+                      }}
+                      disableRestoreFocus
+                    >
+                      <Button
+                        fullWidth
+                        sx={{
+                          justifyContent: "flex-start",
+                          color: "#1976d2",
+                          textDecoration: "none",
+                          transition: "text-decoration 0.2s",
+                          "&:hover": {
+                            textDecoration: "underline",
+                          },
+                        }}
+                        onClick={() => navigate("/beginner-classes")}
+                      >
+                        Beginner Classes
+                      </Button>
+                      <Button
+                        fullWidth
+                        sx={{
+                          justifyContent: "flex-start",
+                          color: "#1976d2",
+                          textDecoration: "none",
+                          transition: "text-decoration 0.2s",
+                          "&:hover": {
+                            textDecoration: "underline",
+                          },
+                        }}
+                        onClick={() => navigate("/advanced-coaching")}
+                      >
+                        Advanced Coaching
+                      </Button>
+                      <Button
+                        fullWidth
+                        sx={{
+                          justifyContent: "flex-start",
+                          color: "#1976d2",
+                          textDecoration: "none",
+                          transition: "text-decoration 0.2s",
+                          "&:hover": {
+                            textDecoration: "underline",
+                          },
+                        }}
+                        onClick={() => navigate("/kids-programs")}
+                      >
+                        Kids Programs
+                      </Button>
+                      <Button
+                        fullWidth
+                        sx={{
+                          justifyContent: "flex-start",
+                          color: "#1976d2",
+                          textDecoration: "none",
+                          transition: "text-decoration 0.2s",
+                          "&:hover": {
+                            textDecoration: "underline",
+                          },
+                        }}
+                        onClick={() => navigate("/private-lessons")}
+                      >
+                        Private Lessons
+                      </Button>
+                    </Popover>
+                  </Box>
+                );
+              } else if (page === "Contactus") {
+                return (
                   <Button
+                    key={page}
                     sx={{
                       color: "#fff",
                       marginLeft: 2,
                       transition: "background 0.2s, color 0.2s",
-                      fontFamily: '"Montserrat", "Comic Sans MS", cursive', // Unique font
+                      fontFamily: '"Montserrat", "Comic Sans MS", cursive',
                       fontWeight: 600,
                       letterSpacing: 1,
                       "&:hover": {
@@ -78,101 +188,33 @@ const Header = () => {
                         color: "#1976d2",
                       },
                     }}
-                    aria-owns={
-                      anchorElServices ? "mega-menu-popover" : undefined
-                    }
-                    aria-haspopup="true"
-                    onClick={handleServicesOpen}
+                    onClick={() => navigate("/contactus")}
                   >
                     {page}
                   </Button>
-                  <Popover
-                    id="mega-menu-popover"
-                    open={anchorElServices}
-                    anchorEl={anchorElServices}
-                    onClose={handleServicesClose}
-                    anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-                    transformOrigin={{ vertical: "top", horizontal: "left" }}
-                    PaperProps={{
-                      sx: {
-                        p: 3,
-                        minWidth: 180,
-                        width: "auto", // Let width grow with content
-                        maxWidth: 300, // Prevent it from being too wide
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 1,
-                        background: "#f5fafd",
-                        mt: 2, // Add margin-top to shift popover downwards
+                );
+              } else {
+                return (
+                  <Button
+                    key={page}
+                    sx={{
+                      color: "#fff",
+                      marginLeft: 2,
+                      transition: "background 0.2s, color 0.2s",
+                      fontFamily: '"Montserrat", "Comic Sans MS", cursive',
+                      fontWeight: 600,
+                      letterSpacing: 1,
+                      "&:hover": {
+                        background: "#fff",
+                        color: "#1976d2",
                       },
                     }}
-                    disableRestoreFocus
                   >
-                    <Typography
-                      variant="subtitle1"
-                      sx={{ fontWeight: 700, mb: 1 }}
-                      // No mouse events here
-                    >
-                      Services
-                    </Typography>
-                    <Button
-                      fullWidth
-                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
-                    >
-                      Beginner Classes
-                    </Button>
-                    <Button
-                      fullWidth
-                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
-                    >
-                      Advanced Coaching
-                    </Button>
-                    <Button
-                      fullWidth
-                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
-                    >
-                      Kids Programs
-                    </Button>
-                    <Button
-                      fullWidth
-                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
-                    >
-                      Pool Booking
-                    </Button>
-                    <Button
-                      fullWidth
-                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
-                    >
-                      Private Lessons
-                    </Button>
-                    <Button
-                      fullWidth
-                      sx={{ justifyContent: "flex-start", color: "#1976d2" }}
-                    >
-                      Events & Camps
-                    </Button>
-                  </Popover>
-                </Box>
-              ) : (
-                <Button
-                  key={page}
-                  sx={{
-                    color: "#fff",
-                    marginLeft: 2,
-                    transition: "background 0.2s, color 0.2s",
-                    fontFamily: '"Montserrat", "Comic Sans MS", cursive', // Unique font
-                    fontWeight: 600,
-                    letterSpacing: 1,
-                    "&:hover": {
-                      background: "#fff",
-                      color: "#1976d2",
-                    },
-                  }}
-                >
-                  {page}
-                </Button>
-              )
-            )}
+                    {page}
+                  </Button>
+                );
+              }
+            })}
             {/* Auth Buttons */}
             <Button
               sx={{

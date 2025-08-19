@@ -18,7 +18,6 @@ const HeroSection = () => (
     <Box
       component="img"
       src={heroImg}
-      alt="Swim Free Hero"
       sx={{
         position: "absolute",
         top: 0,
