@@ -16,7 +16,7 @@ export const Contactus = () => {
     e.preventDefault();
     console.log("Contact Form Submitted:", form);
     setSubmitted(true);
-    setForm({ name: "", email: "", idea: "" });
+    setForm({ name: "", email: "", idea: "" }); // Reset form after submission
   };
 
   return (

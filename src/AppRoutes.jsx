@@ -1,13 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import BeginnerClasses from "./pages/BeginnerClasses";
-import AdvancedCoaching from "./pages/AdvancedCoaching";
-import KidsPrograms from "./pages/KidsPrograms";
-import PrivateLessons from "./pages/PrivateLessons";
-import Contactus from "./pages/Contactus";
-import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
-import Signup from "./pages/Signup";
+import Home from "./user/Home";
+import BeginnerClasses from "./user/BeginnerClasses";
+import AdvancedCoaching from "./user/AdvancedCoaching";
+import KidsPrograms from "./user/KidsPrograms";
+import PrivateLessons from "./user/PrivateLessons";
+import Contactus from "./user/Contactus";
+import Login from "./user/Login";
+import NotFound from "./user/NotFound";
+import Signup from "./user/Signup";
+import Data from "./user/Data";
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
       <Route path="/private-lessons" element={<PrivateLessons />} />
       <Route path="/Contactus" element={<Contactus />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/data" element={<Data />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

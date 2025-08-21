@@ -7,7 +7,9 @@ import {
   TextField,
   Divider,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { DataContext } from "../context/DataContext";
 import { MdCheckCircle } from "react-icons/md";
 import { checkValidEmail, checkValidPassword } from "../utils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -22,6 +24,8 @@ const Login = () => {
   const [loginData, setLoginData] = useState(INITIAL_LOGIN_DATA);
   const [errors, setErrors] = useState({});
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const { addLoginData } = useContext(DataContext);
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -50,8 +54,9 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Login data submitted:", { loginData });
+      addLoginData(loginData);
       setLoginData(INITIAL_LOGIN_DATA);
+      navigate("/data");
     }
   };
 

@@ -7,7 +7,9 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { DataContext } from "../context/DataContext";
 import {
   checkValidEmail,
   checkValidPassword,
@@ -28,6 +30,8 @@ const Signup = () => {
   const [signupData, setSignupData] = useState(INITIAL_SIGNUP_DATA);
   const [errors, setErrors] = useState({});
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const { addSignupData } = useContext(DataContext);
+  const navigate = useNavigate();
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -62,8 +66,9 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Signup data submitted:", { signupData });
+      addSignupData(signupData);
       setSignupData(INITIAL_SIGNUP_DATA);
+      navigate("/data");
     }
   };
 
